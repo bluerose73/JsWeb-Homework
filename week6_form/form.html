@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign up</title>
+    <link rel="stylesheet" type="text/css" href="form.css">
+</head>
+<body>
+    <!-- 假设某学生社团要举办一个活动，请为其做一个参与者报名页面，其中包含报名者基本信息、
+    能力信息、活动参与信息（如参与的子项、时段选择、服饰尺寸、颜色等等），信息项尽量多（10个以上）。
+    使用合理的input类型及textarea, select，还可以使用placeholder, label, fieldset,
+    lengend, datalist等，加上必要的表单验证（如required, min, max, maxlength, pattern等）。
+    加上必要的css使之美观， 注意对齐（使用table或label给定宽度）。
+    必要时，加上js进行表单检查（如：如果是男生则不能选女子排球等女子项目）。
+    form的action可以是 https://httpbin.org/post  或 https://postman-echo.com/post 。  -->
+    <form action="https://httpbin.org/post" method="post" name="signIn">
+        <h1>
+            趣味运动会报名表
+        </h1>
+        <section>
+            <h2>
+                基本信息
+            </h2>
+            <div>
+                <label for="name">姓名：</label>
+                <input type="text" id="name" name="name" required placeholder="张三">
+            </div>
+            <div>
+                <label>性别：</label>
+                <ul class="inline">
+                    <li>
+                        <input type="radio" id="gender_m" name="gender" value="m">
+                        <label for="gender_m">男</label>
+                    </li>
+                    <li>
+                        <input type="radio" id="gender_f" name="gender" value="f">
+                        <label for="gender_f">女</label>
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <label for="department">院系：</label>
+                <input type="text" id="department" name="department" list="departmentSuggestion">
+                <datalist id="departmentSuggestion">
+                    <option>信息科学技术学院</option>
+                    <option>物理学院</option>
+                    <option>生命科学学院</option>
+                    <option>数学科学学院</option>
+                    <option>工学院</option>
+                    <option>化学与分子工程学院</option>
+                    <option>城市与环境学院</option>
+                    <option>心理与认知科学学院</option>
+                </datalist>
+            </div>
+            <div>
+                <label for="grade">年级：</label>
+                <select id="grade" name="grade">
+                    <option>大一</option>
+                    <option>大二</option>
+                    <option>大三</option>
+                    <option>大四</option>
+                </select>
+            </div>
+            <div>
+                <label for="email">电子邮箱：</label>
+                <input type="email" id="email" name="email">
+            </div>
+            <div>
+                <label for="tel">电话：</label>
+                <input type="tel" id="tel" name="tel" maxlength="11">
+            </div>
+        </section>
+        <section>
+            <h2>
+                能力信息
+            </h2>
+            <div>
+                <label for="weight">大约体重：</label>
+                <span id="weightOutput">100 kg</span>
+                <input type="range" id="weight" name="weight" min="0" max="200" step="10">
+            </div>
+            <div>
+                <label for="experience">比赛经历：</label>
+                <textarea placeholder="请填写体育比赛经历和获奖情况" id="experience" name="experience"e></textarea>
+            </div>
+        </section>
+        <section>
+            <h2>
+                活动参与信息
+            </h2>
+            <div>
+                <fieldset>
+                    <legend>报名项目</legend>
+                    <ul>
+                        <li>
+                            <input type="checkbox" id="twoMenThreeFeet" name="activity" value="twoMenThreeFeet">
+                            <label for="twoMenThreeFeet">二人三足</label>
+                        </li>
+                        <li>
+                            <input type="checkbox" id="womensVolleyball" name="activity" value="womensVolleyball">
+                            <label for="womensVolleyball">女子排球</label>
+                        </li>
+                        <li>
+                            <input type="checkbox" id="Go" name="activity" value="Go">
+                            <label for="Go">围棋</label>
+                        </li>
+                    </ul>
+                </fieldset>
+            </div>
+            <div>
+                <label for="color">队服颜色：</label>
+                <input type="color" id="color" name="color">
+            </div>
+        </section>
+        <div id="warning"></div>
+        <button type="submit">提交</button>
+    </form>
+    <script src="form.js" async></script>
+</body>
+</html>

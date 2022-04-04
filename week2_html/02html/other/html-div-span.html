@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>标签分类</title>
+</head>
+<body>
+    <div class="wrapper">
+
+        <!-- 块级元素  ：div p h1~h6 ol ul table form li
+            1.独占一行
+            2.可以设置宽度和高度，如果设置了宽度和高度，则就是当前的宽高，如果宽度和高度没有设置，宽度是父盒子的宽度，高度根据内容填充
+
+        -->
+
+        <div class="left">
+            这是路飞学城的战场
+            <div>这是我的区域
+                <!-- <div style="width: 500px;height: 100px">这是我的爱好</div> -->
+                <ul>
+                    <li>
+                        <h2>抽烟</h2>
+                    </li>
+                    <li>
+                        <ol>
+                            <li>喝酒</li>
+                            <li>烫头</li>
+
+                        </ol>
+                    </li>
+                </ul>
+            </div>    
+
+        </div>
+
+        <div class="right">
+            
+            <!-- a span br i em strong label 
+
+                行内元素：在一行内展示，不能设置宽度和高度，宽度和高度根据内容填充
+            -->
+
+            <a href="#" style="width: 200px;height: 100px">百度</a>
+            <a href="#">路飞</a>
+
+            <span style="width: 100px;height: 200px">一些文本</span>
+            <span>一些文本</span>
+
+        </div>
+
+        <div class="inline-block">
+            
+            <!-- 行内块 :
+                1.在一行内展示
+                2.可设置宽高
+            -->
+            <img src="./homesmall.png" alt="一张图片">
+            <input type="text" name="username" style="width: 200px;height: 50px">
+        </div>
+
+        <!-- 标签嵌套规则
+        块元素可以包含内联元素或某些块元素，但内联元素却不能包含块元素，它只能包含其它的内联元素
+
+        有几个特殊的块级元素只能包含内嵌元素，不能再包含块级元素，这几个特殊的标签是h1~h6 p
+
+         -->    
+
+    </div>
+    
+</body>
+</html>

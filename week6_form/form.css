@@ -1,0 +1,116 @@
+body {
+    background-color: azure;
+}
+
+form {
+    width: 50%;
+    min-width: 480px;
+    margin: 0 auto;
+}
+
+h1 {
+    text-align: center;
+    color: blueviolet;
+}
+
+h2 {
+    color: blueviolet;
+}
+
+ul li {
+    list-style-type: none;
+}
+
+ul.inline {
+    display: inline-block;
+    margin: 0;
+}
+
+ul.inline li {
+    display: inline-block;
+}
+
+form div {
+    box-sizing: border-box;
+    margin: 10px 0;
+}
+
+section>div>label {
+    display: inline-block;
+    width: 5em;
+    text-align: right;
+}
+
+textarea {
+    width: 25em;
+    height: 5em;
+    vertical-align: top;
+}
+
+button{
+    display: block;
+    margin: 0 auto;
+    width: 4em;
+    border-radius: 5px;
+    border-color: green;
+}
+
+select{
+    font: 1em sans-serif;
+}
+
+#warning{
+    text-align: center;
+    background-color: red;
+    color: white;
+    border-radius: 5px;
+}
+
+input:invalid{
+    background-color: pink;
+}
+
+/* 以下来自https://developer.mozilla.org/zh-CN/docs/Learn/Forms/Your_first_form */
+form {
+    /* 居中表单 */
+    margin: 0 auto;
+    width: 400px;
+    /* 显示表单的轮廓 */
+    padding: 1em;
+    border: 1px solid #CCC;
+    border-radius: 1em;
+}
+
+input,
+textarea {
+    /* 确保所有文本输入框字体相同
+       textarea默认是等宽字体 */
+    font: 1em sans-serif;
+
+    /* 使所有文本输入框大小相同 */
+    box-sizing: border-box;
+
+    /* 调整文本输入框的边框样式 */
+    border: 1px solid #999;
+}
+
+textarea,
+input[type="text"],
+input[type="email"],
+input[type="tel"]{
+    width: 300px;
+}
+
+input[type="range"]{
+    width: 252px;
+}
+
+#weightOutput{
+    width: 40px;
+}
+
+input:focus,
+textarea:focus {
+    /* 给激活的元素一点高亮效果 */
+    border-color: #000;
+}

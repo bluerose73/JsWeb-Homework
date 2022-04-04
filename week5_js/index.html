@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Super Coder</title>
+  <link rel="stylesheet" href="styles/styles.css">
+</head>
+<!--
+  题目：使用javascript:当点击一个对象时改变别的对象的大小、位置、颜色等（或使用setInterval周期性地执行）。
+  如果加上Math.random()表示0到1之间的随机数，你也可以写一个抓蝴蝶、石头剪刀布等简单的小游戏。
+
+  游戏 >>>> Super Coder <<<< 讲述写代码发家致富的故事，此类游戏被称为 idle game ，乐趣在于盯着数字蹭蹭涨。
+  本游戏是对 Cookie Clicker (http://orteil.dashnet.org/cookieclicker/) 的低配模仿。
+  流程：写代码 -> 雇人 -> 写更多代码 -> 雇更多人
+  
+  玩法类似的游戏（也是用 html + js 写的）还有：
+  A Dark Room | https://adarkroom.doublespeakgames.com/   <=== 墙裂推荐！！
+  Candy Box   | https://candybox2.github.io/candybox/
+-->
+<body>
+  <main>
+    <div class="status">0 Lines of Code</div>
+    <div class="computer">
+      <img class="computer_img" src="images/computer.png" alt="A computer">
+    </div>
+    <div class="prompt">Tap to Write More Code!</div>
+    <ul class="hire">
+      <li class="programmer">
+        <div class="worker">
+          <div class="worker_name">
+            Programmer
+          </div>
+          <div class="worker_number">
+            0
+          </div>
+          <div class="income_per_second">
+            500 LOC/s
+          </div>
+        </div>
+        <button class="hire_button">
+          Hire<br>
+          -500
+        </button>
+        <div class="clearfix"></div>
+      </li>
+      <li class="software_engineer">
+        <div class="worker">
+          <div class="worker_name">
+            Software Engineer
+          </div>
+          <div class="worker_number">
+            0
+          </div>
+          <div class="income_per_second">
+            500 LOC/s
+          </div>
+        </div>
+        <button class="hire_button">
+          Hire<br>
+          -500
+        </button>
+        <div class="clearfix"></div>
+      </li>
+      <li class="coding_ai">
+        <div class="worker">
+          <div class="worker_name">
+            Coding AI
+          </div>
+          <div class="worker_number">
+            0
+          </div>
+          <div class="income_per_second">
+            500 LOC/s
+          </div>
+        </div>
+        <button class="hire_button">
+          Hire<br>
+          -500
+        </button>
+        <div class="clearfix"></div>
+      </li>
+    </ul>
+
+    <div class="loc_increase">test</div>
+  </main>
+  <script defer src="scripts/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fake portal</title>
+    <!--
+    使用自顶向下、逐步求精的方法，构建一个大体类似于北大校内信息门户首页（不是指北大
+    主页，而是指https://portal.pku.edu.cn/)，要注意页面布局、顶部、底部、中间分块
+    区域， 特别要求用 display, float, clearfix,position,:hover等CSS要素。(一些细
+    节不要求完全一样，如颜色可以不同、大小可以不同，内容行数、图标个数可以不同，如第
+    一行及右上角的输入框可以不要）。
+
+    另外，适当地引入图片（可以从F12的sources面板中找到图片copy出来，注意放images子
+    目录中，要引入时要用相对路径）。页面中要适当加入hover效果和适当的boder效果。
+    border的基本写法是： border-top: 1px solid red;
+
+    注：
+    为了兼容性，老师推荐设置了float的元素一定要设置width属性。本网页不能保证float
+    元素一定有width，但是正版portal本身也没有做到。
+    -->
+    <style>
+        /* boilerplates */
+        * {
+            padding: 0px;
+            margin: 0px;
+            font-family: 'Microsoft Yahei', "Lucida Grande", "Tahoma", "Arial", "Helvetica", "sans-serif";
+        }
+
+        li {
+            list-style-type: none;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .clearfix {
+            *zoom: 1;
+            overflow: auto;
+            /*IE/7/6*/
+        }
+
+        .clearfix:before,
+        .clearfix:after {
+            content: "";
+            display: table;
+            line-height: 0;
+        }
+
+        .clearfix:after {
+            clear: both;
+        }
+
+        .nav {
+            background-color: #700005;
+            width: 100%;
+        }
+
+        .nav_content {
+            width: 1000px;
+            margin: 0 auto;
+        }
+
+        .nav ul {
+            display: inline-block;
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
+
+        .nav .rightnav {
+            float: right;
+        }
+
+        .nav li {
+            color: white;
+            margin: auto;
+            display: inline-block;
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+
+        .scale1em {
+            width: 1em;
+            height: 1em;
+        }
+
+        .banner {
+            background: #8c0000 url(images/img_xnmh.gif) no-repeat top right;
+            background-size: auto 100px;
+            width: 100%;
+            height: 100px;
+        }
+
+        .banner_content {
+            width: 1000px;
+            margin: 0 auto;
+        }
+
+        .banner_content>div {
+            padding: 10px;
+            height: 80px;
+            float: left;
+        }
+
+        .banner .title {
+            font-size: 36px;
+            color: white;
+            padding: 10px;
+        }
+
+        .content {
+            width: 1000px;
+            margin: 0 auto;
+        }
+
+        .bulletin {
+            float: left;
+            height: 250px;
+        }
+
+        .width25 {
+            width: 24%;
+        }
+
+        .width50 {
+            width: 49%;
+        }
+
+        .width75 {
+            width: 74%;
+        }
+
+        .height800 {
+            height: 820px;
+        }
+
+        .bulletin_title {
+            padding: 5px 20px;
+            font-size: 18px;
+            height: 30px;
+        }
+
+        .bulletin_title::after {
+            content: ">";
+            color: gray;
+            float: right;
+        }
+
+        .bulletin_content {
+            border-top: 2px solid #dda813;
+            border-bottom: 1px solid #cecece;
+            border-left: 1px solid #cecece;
+            border-right: 1px solid #cecece;
+            margin: 5px 20px;
+            padding: 5px;
+            height: calc(100% - 70px);
+            font-size: 16px;
+        }
+
+        .bulletin_content li {
+            height: 30px;
+        }
+
+        .bulletin_content a {
+            display: block;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            width: calc(100% - 70px);
+            height: 30px;
+            float: left;
+        }
+
+        .bulletin a:hover {
+            color: #9b0000;
+        }
+
+        .bulletin_content span {
+            display: block;
+            width: 50px;
+            height: 30px;
+            float: right;
+        }
+
+
+        .table_div {
+            width: calc(25% - 20px);
+            float: left;
+        }
+
+        .padding {
+            padding: 45px 0 0 0;
+        }
+
+        .icon_table {
+            border-collapse: collapse;
+            padding: 45px 10px 0 0;
+        }
+
+        .icon_table td {
+            width: 108px;
+            height: 105px;
+            padding-bottom: 10px;
+            border: 1px solid #cecece;
+            text-align: center;
+            vertical-align: bottom;
+            position: relative;
+            color: black;
+        }
+
+        .hover_scale td:hover {
+            transition: transform 300ms;
+            transform: scale(1.05);
+            color: white;
+            z-index: 2;
+        }
+
+        .calender {
+            background: white url(images/icon-calendar.png) no-repeat center;
+        }
+
+        .calender:hover {
+            background: #8c0000 url(images/icon-calendar-w.png) no-repeat center;
+        }
+
+        .software {
+            background: white url(images/icon-software.png) no-repeat center;
+        }
+
+        .software:hover {
+            background: #8c0000 url(images/icon-software-w.png) no-repeat center;
+        }
+
+        .qr_code {
+            background: white url(images/portal.png) no-repeat top;
+            background-size: 80%;
+        }
+
+        .no_border td {
+            border: 1px solid rgba(255, 255, 255, 0);
+        }
+
+        .footer {
+            background-color: #505050;
+            width: 100%;
+            font-size: 12px;
+        }
+
+        .footer ul {
+            padding: 10px 30px;
+        }
+
+        .footer ul li {
+            color: white;
+            display: inline-block;
+            padding: 0 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="nav">
+        <div class="nav_content">
+            <ul class="leftnav">
+                <li><a href="https://www.pku.edu.cn">请登录</a></li>
+            </ul>
+            <ul class="rightnav">
+                <li><a href="https://www.pku.edu.cn"><img class="scale1em" src="images/biz-icon-life-w.png"
+                            alt="Boya Tower"></a></li>
+                <li><a href="https://www.pku.edu.cn">燕云直播</a></li>
+                <li><a href="https://www.pku.edu.cn">网络</a></li>
+                <li><a href="https://www.pku.edu.cn">邮箱</a></li>
+                <li><a href="https://www.pku.edu.cn">客户端</a></li>
+                <li>
+                    <form><input type="text" value="找人"></form>
+                </li>
+                <li><a href="https://www.pku.edu.cn">EN</a></li>
+            </ul>
+        </div>
+
+    </div>
+
+    <div class="banner">
+        <div class="banner_content">
+            <div>
+                <img src="images/pkulogo_white.svg" alt="pkulogo_white">
+            </div>
+            <div>
+                <div class="title">| 校内信息门户</div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="content clearfix">
+        <div class="bulletin width50">
+            <div class="bulletin_title">
+                <a href="https://www.pku.edu.cn">学校公告</a>
+            </div>
+            <ul class="bulletin_content">
+                <li>
+                    <a href="https://www.pku.edu.cn">两会精神报告会通知</a>
+                    <span>03-15</span>
+                </li>
+                <li>
+                    <a href="https://www.pku.edu.cn">关于表彰北京大学2021年度安全管理先进单位和先进个人的通知</a>
+                    <span>02-22</span>
+                </li>
+                <li>
+                    <a href="https://www.pku.edu.cn">两会精神报告会通知</a>
+                    <span>03-15</span>
+                </li>
+                <li>
+                    <a href="https://www.pku.edu.cn">关于表彰北京大学2021年度安全管理先进单位和先进个人的通知</a>
+                    <span>02-22</span>
+                </li>
+                <li>
+                    <a href="https://www.pku.edu.cn">两会精神报告会通知</a>
+                    <span>03-15</span>
+                </li>
+                <li>
+                    <a href="https://www.pku.edu.cn">关于表彰北京大学2021年度安全管理先进单位和先进个人的通知</a>
+                    <span>02-22</span>
+                </li>
+            </ul>
+        </div>
+        <div class="bulletin width50">
+            <div class="bulletin_title">
+                <a href="https://www.pku.edu.cn">干部选任公告</a>
+            </div>
+            <ul class="bulletin_content">
+                <li>
+                    <a href="https://www.pku.edu.cn">两会精神报告会通知</a>
+                    <span>03-15</span>
+                </li>
+                <li>
+                    <a href="https://www.pku.edu.cn">关于表彰北京大学2021年度安全管理先进单位和先进个人的通知</a>
+                    <span>02-22</span>
+                </li>
+                <li>
+                    <a href="https://www.pku.edu.cn">两会精神报告会通知</a>
+                    <span>03-15</span>
+                </li>
+                <li>
+                    <a href="https://www.pku.edu.cn">关于表彰北京大学2021年度安全管理先进单位和先进个人的通知</a>
+                    <span>02-22</span>
+                </li>
+                <li>
+                    <a href="https://www.pku.edu.cn">两会精神报告会通知</a>
+                    <span>03-15</span>
+                </li>
+                <li>
+                    <a href="https://www.pku.edu.cn">关于表彰北京大学2021年度安全管理先进单位和先进个人的通知</a>
+                    <span>02-22</span>
+                </li>
+            </ul>
+        </div>
+        <div class="bulletin width75 height800">
+            <div class="bulletin_title">
+                <a href="https://www.pku.edu.cn">单位公告</a>
+            </div>
+            <ul class="bulletin_content">
+                <li>
+                    <a href="https://www.pku.edu.cn">两会精神报告会通知</a>
+                    <span>03-15</span>
+                </li>
+                <li>
+                    <a href="https://www.pku.edu.cn">关于表彰北京大学2021年度安全管理先进单位和先进个人的通知</a>
+                    <span>02-22</span>
+                </li>
+                <li>
+                    <a href="https://www.pku.edu.cn">两会精神报告会通知</a>
+                    <span>03-15</span>
+                </li>
+                <li>
+                    <a href="https://www.pku.edu.cn">关于表彰北京大学2021年度安全管理先进单位和先进个人的通知</a>
+                    <span>02-22</span>
+                </li>
+                <li>
+                    <a href="https://www.pku.edu.cn">两会精神报告会通知</a>
+                    <span>03-15</span>
+                </li>
+                <li>
+                    <a href="https://www.pku.edu.cn">关于表彰北京大学2021年度安全管理先进单位和先进个人的通知</a>
+                    <span>02-22</span>
+                </li>
+                <li>
+                    <a href="https://www.pku.edu.cn">两会精神报告会通知</a>
+                    <span>03-15</span>
+                </li>
+                <li>
+                    <a href="https://www.pku.edu.cn">关于表彰北京大学2021年度安全管理先进单位和先进个人的通知</a>
+                    <span>02-22</span>
+                </li>
+                <li>
+                    <a href="https://www.pku.edu.cn">两会精神报告会通知</a>
+                    <span>03-15</span>
+                </li>
+                <li>
+                    <a href="https://www.pku.edu.cn">关于表彰北京大学2021年度安全管理先进单位和先进个人的通知</a>
+                    <span>02-22</span>
+                </li>
+                <li>
+                    <a href="https://www.pku.edu.cn">两会精神报告会通知</a>
+                    <span>03-15</span>
+                </li>
+                <li>
+                    <a href="https://www.pku.edu.cn">关于表彰北京大学2021年度安全管理先进单位和先进个人的通知</a>
+                    <span>02-22</span>
+                </li>
+                <li>
+                    <a href="https://www.pku.edu.cn">两会精神报告会通知</a>
+                    <span>03-15</span>
+                </li>
+                <li>
+                    <a href="https://www.pku.edu.cn">关于表彰北京大学2021年度安全管理先进单位和先进个人的通知</a>
+                    <span>02-22</span>
+                </li>
+                <li>
+                    <a href="https://www.pku.edu.cn">两会精神报告会通知</a>
+                    <span>03-15</span>
+                </li>
+                <li>
+                    <a href="https://www.pku.edu.cn">关于表彰北京大学2021年度安全管理先进单位和先进个人的通知</a>
+                    <span>02-22</span>
+                </li>
+                <li>
+                    <a href="https://www.pku.edu.cn">两会精神报告会通知</a>
+                    <span>03-15</span>
+                </li>
+                <li>
+                    <a href="https://www.pku.edu.cn">关于表彰北京大学2021年度安全管理先进单位和先进个人的通知</a>
+                    <span>02-22</span>
+                </li>
+                <li>
+                    <a href="https://www.pku.edu.cn">关于表彰北京大学2021年度安全管理先进单位和先进个人的通知</a>
+                    <span>02-22</span>
+                </li>
+                <li>
+                    <a href="https://www.pku.edu.cn">两会精神报告会通知</a>
+                    <span>03-15</span>
+                </li>
+                <li>
+                    <a href="https://www.pku.edu.cn">关于表彰北京大学2021年度安全管理先进单位和先进个人的通知</a>
+                    <span>02-22</span>
+                </li>
+                <li>
+                    <a href="https://www.pku.edu.cn">两会精神报告会通知</a>
+                    <span>03-15</span>
+                </li>
+                <li>
+                    <a href="https://www.pku.edu.cn">关于表彰北京大学2021年度安全管理先进单位和先进个人的通知</a>
+                    <span>02-22</span>
+                </li>
+                <li>
+                    <a href="https://www.pku.edu.cn">两会精神报告会通知</a>
+                    <span>03-15</span>
+                </li>
+                <li>
+                    <a href="https://www.pku.edu.cn">关于表彰北京大学2021年度安全管理先进单位和先进个人的通知</a>
+                    <span>02-22</span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="table_div">
+            <div class="padding">
+                <table class="icon_table hover_scale">
+                    <tr>
+                        <td class="calender">校历</td>
+                        <td class="software">正版软件</td>
+                    </tr>
+                    <tr>
+                        <td class="calender">校历</td>
+                        <td class="software">正版软件</td>
+                    </tr>
+                    <tr>
+                        <td class="calender">校历</td>
+                        <td class="software">正版软件</td>
+                    </tr>
+                    <tr>
+                        <td class="calender">校历</td>
+                        <td class="software">正版软件</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="padding">
+                <table class="icon_table no_border">
+                    <tr>
+                        <td class="qr_code">APP</td>
+                        <td class="qr_code">APP</td>
+                    </tr>
+                    <tr>
+                        <td class="qr_code">APP</td>
+                        <td class="qr_code">APP</td>
+                    </tr>
+                </table>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="footer">
+        <ul>
+            <li>
+                版权所有©北京大学 &amp; bluerose73
+            </li>
+            <li>
+                地址：北京市海淀区颐和园路5号
+            </li>
+            <li>
+                邮编：100871
+            </li>
+            <li>
+                邮箱：its@pku.edu.cn
+            </li>
+            <li>
+                电话：010-62751023
+            </li>
+            <li>
+                支持：bluerose73
+            </li>
+        </ul>
+    </div>
+</body>
+
+</html>

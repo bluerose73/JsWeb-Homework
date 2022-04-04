@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<!--
+使用HTML做一个个人简历的网页（可以不是自己的信息）。要求使用文、图、表（列表及表格）、链等要素。
+
+内容要比较丰富、设计合理、表格宽度合理、适当使用<font>等方式让简历看起来比较美观。注意图片的地址要使用相对地址。
+文件名：学号-姓名-内容.zip或.rar，如2100011011-李明-个人简历.zip。
+
+布局设计参考了 https://www.w3school.com.cn/html/html_layout.asp，
+-->
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bluerose73的个人简历</title>
+
+    <style>
+        html, body {
+            height: 100%;
+        }
+        a{
+            color: rgb(139, 0, 18);
+        }
+        table, tr, td{
+            border-collapse: collapse;
+            border: 2px solid rgb(235, 194, 194);
+            padding: 5px;
+        }
+        header{
+            background-color:rgb(139, 0, 18);
+            color:white;
+            text-align: center;
+            padding: 5px;
+        }
+        nav{
+            background-color: rgb(235, 194, 194);
+            float: left;
+            padding: 5px;
+            width: 15%;
+            height: 100%;
+            text-align: center;
+            line-height: 2.0;
+            font-size: 1.2em;
+            font-family: Kaiti, Arial, Helvetica, sans-serif;
+        }
+        section{
+            float: right;
+            padding: 10px;
+            width: 80%;
+        }
+        footer{
+            background-color: rgb(139, 0, 18);
+            color: white;
+            clear: both;
+            text-align: center;
+            padding: 5px;
+        }
+        hr{
+            border: 0px;
+            height: 2px;
+            background-color: rgb(235, 194, 194);
+            margin: 50px 0px 0px;
+        }
+        a, a:hover{
+            text-decoration: none;
+        }
+        ul, li{
+            list-style-type: none;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>bluerose73的个人简历</h1>
+    </header>
+
+    <nav>
+        <a href="#basic_info">基本信息</a><br>
+        <a href="#skills">工作技能</a><br>
+        <a href="#education">教育背景</a><br>
+    </nav>
+
+    <section>
+        <h2 id="basic_info">基本信息</h2>
+        <table width="80%">
+            <tr>
+                <td><strong>姓名</strong></td>  <td>bluerose73</td>
+                <td><strong>住址</strong></td>  <td>北京市海淀区颐和园路5号</td>
+                <td rowspan="3" align="center"> <img src="images/portrait.jpg" width="100" alt="a button-ear dog"> </td>
+            </tr>
+            <tr>
+                <td><strong>电话</strong></td>  <td>62756403</td>
+                <td><strong>邮箱</strong></td>  <td><a href="mailto:xxx@pku.edu.cn">xxx@pku.edu.cn</a></td>
+            </tr>
+            <tr>
+                <td><strong>专业</strong></td>  <td colspan="3">信息科学技术学院 计算机科学与技术</td>
+            </tr>
+        </table>
+
+        <hr>
+        <h2 id="skills">工作技能</h2>
+        <ol>
+            <li>精通CSS、PHP、C、C＋＋、C#、Java、Ruby、python、Objective-C、Pascal、spss、sas等单词的拼写</li>
+            <li>熟悉Windows、Linux、Mac、Android、IOS、WP8等系统的开关机</li>
+            <li>擅长IOS、Android、Symbian、Windows Phone 等手机贴膜</li>
+        </ol>
+
+        <hr>
+        <h2 id="education">教育背景</h2>
+        <ul>
+            <li>2000 ~ 2003 北大京学胎教中心</li>
+            <li>2004 ~ 2006 北大京学幼儿园</li>
+            <li>2007 ~ 2011 北大京学附属小学</li>
+            <li>2012 ~ 2018 北大京学附属中学</li>
+            <li>2019 ~ 至今 <a href="https://www.pku.edu.cn/" target="_blank">北京大学</a></li>
+        </ul>
+    </section>
+
+    <footer>
+        Copyright xxx@pku.edu.cn
+    </footer>
+
+</body>
+
+</html>

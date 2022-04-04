@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<!--
+针对简历或其他页面，使用CSS, 要求使用字体、颜色、边框、hover效果等。
+
+简历可以不使用table表示。 hover时可以改变对象的颜色边框甚至使用after加点emoj图标。
+注意：内容的结构与css的配合，注意css选择器的多种写法。
+-->
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bluerose73的个人简历</title>
+
+    <style>
+        html,
+        body {
+            height: 100%;
+        }
+
+        div.red_on_hover:hover {
+            background-color: rgb(139, 0, 18);
+            color: white;
+        }
+
+        table,
+        tr,
+        td {
+            border-collapse: collapse;
+            border: 2px solid rgb(235, 194, 194);
+            padding: 5px;
+        }
+
+        td {
+            font-family: SimSun, Arial, Helvetica, sans-serif;
+        }
+
+        header {
+            background-color: rgb(139, 0, 18);
+            color: white;
+            text-align: center;
+            padding: 5px;
+        }
+
+        nav {
+            background-color: rgb(235, 194, 194);
+            float: left;
+            padding: 10px;
+            width: 15%;
+            height: 100%;
+            text-align: center;
+            line-height: 2.0;
+            font-size: 1.2em;
+            font-family: Heiti, Arial, Helvetica, sans-serif;
+        }
+
+        nav div.link:hover {
+            background-color: rgb(139, 0, 18);
+            color: white;
+            transition: transform .2s;
+        }
+
+        nav div.link:active {
+            transform: scale(1.2);
+        }
+
+        section {
+            position: relative;
+            float: right;
+            padding: 10px;
+            width: 80%;
+            height: 100%;
+            background-image: url('images/cat.png');
+            background-position: bottom;
+            background-repeat: no-repeat;
+            background-size: contain;
+        }
+
+        section>div {
+            padding: 10px 5px;
+            border-left: 6px solid rgba(235, 194, 194, 0);
+            box-sizing: border-box;
+        }
+
+        section>div:hover {
+            border-left: 6px solid rgb(139, 0, 18);
+            background-color: rgba(235, 194, 194, 0.2);
+            box-sizing: border-box;
+        }
+
+        footer {
+            background-color: rgb(139, 0, 18);
+            color: white;
+            clear: both;
+            text-align: center;
+            padding: 5px;
+        }
+
+        hr {
+            border: 0px;
+            height: 2px;
+            background-color: rgb(235, 194, 194);
+            margin: 50px 0px 0px;
+        }
+
+        a {
+            color: rgb(139, 0, 18);
+        }
+
+        a.underline:hover {
+            text-decoration: underline;
+        }
+
+        a,
+        a:hover {
+            text-decoration: none;
+        }
+
+        ul {
+            list-style-type: none;
+        }
+
+        ul,
+        ol {
+            line-height: 200%;
+        }
+
+        ul li::before {
+            content: "😀";
+        }
+
+        ul li:hover::before {
+            content: "😅";
+        }
+
+        .zoom {
+            display: block;
+            margin: 0 auto;
+            width: 100px;
+            transition: transform .2s;
+        }
+
+        .zoom:hover {
+            transform: scale(1.5);
+        }
+
+        table {
+            width: 80%;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>bluerose73的个人简历</h1>
+    </header>
+
+    <nav>
+        <a href="#basic_info">
+            <div class="link">基本信息</div>
+        </a>
+        <a href="#skills">
+            <div class="link">工作技能</div>
+        </a>
+        <a href="#education">
+            <div class="link">教育背景</div>
+        </a>
+    </nav>
+
+    <section>
+        <div>
+            <h2 id="basic_info">基本信息</h2>
+            <table>
+                <tr>
+                    <th>姓名</th>
+                    <td>bluerose73</td>
+                    <th>住址</th>
+                    <td>北京市海淀区颐和园路5号</td>
+                    <td rowspan="3"> <img class="zoom" src="images/portrait.jpg" alt="a button-ear dog"> </td>
+                </tr>
+                <tr>
+                    <th>电话</th>
+                    <td>62756403</td>
+                    <th>邮箱</th>
+                    <td><a class="underline" href="mailto:xxx@pku.edu.cn">xxx@pku.edu.cn</a></td>
+                </tr>
+                <tr>
+                    <th>专业</th>
+                    <td colspan="3">信息科学技术学院 计算机科学与技术</td>
+                </tr>
+            </table>
+        </div>
+
+        <div>
+            <h2 id="skills">工作技能</h2>
+            <ol>
+                <li>精通CSS、PHP、C、C＋＋、C#、Java、Ruby、python、Objective-C、Pascal、spss、sas等单词的拼写</li>
+                <li>熟悉Windows、Linux、Mac、Android、IOS、WP8等系统的开关机</li>
+                <li>擅长IOS、Android、Symbian、Windows Phone 等手机贴膜</li>
+            </ol>
+        </div>
+
+        <div>
+            <h2 id="education">教育背景</h2>
+            <ul>
+                <li>2000 ~ 2003 北大京学胎教中心</li>
+                <li>2004 ~ 2006 北大京学幼儿园</li>
+                <li>2007 ~ 2011 北大京学附属小学</li>
+                <li>2012 ~ 2018 北大京学附属中学</li>
+                <li>2019 ~ 至今 <a class="underline" href="https://www.pku.edu.cn/" target="_blank">北京大学</a></li>
+            </ul>
+        </div>
+    </section>
+
+    <footer>
+        Copyright xxx@pku.edu.cn
+    </footer>
+
+</body>
+
+</html>

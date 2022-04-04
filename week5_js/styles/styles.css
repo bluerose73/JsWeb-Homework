@@ -1,0 +1,96 @@
+.clearfix{
+    clear: both;
+}
+
+body{
+    font-family: Consolas, Arial, Helvetica, sans-serif;
+    background-color: antiquewhite;
+}
+
+main{
+    width: 50%;
+    min-width: 480px;
+    margin: 0 auto;
+}
+
+.status{
+    font-size: 1.5em;
+    text-align: center;
+}
+
+.computer{
+    width: 100%;
+}
+
+.computer_img{
+    width: 30%;
+    display: block;
+    margin: 20px auto;
+    transition: transform 0.1s;
+}
+
+.computer_img:hover{
+    transform: scale(1.05);
+}
+
+.computer_img:active{
+    transform: scale(0.95);
+}
+
+.prompt{
+    text-align: center;
+    font-size: 1.2em;
+}
+
+ul li{
+    list-style-type: none;
+}
+
+.hire{
+    padding: 10px 20px;
+}
+
+.hire > li{
+    border: 2px solid whitesmoke;
+}
+
+.worker{
+    box-sizing: border-box;
+    float: left;
+    width: 80%;
+    padding: 10px;
+}
+
+.hire_button{
+    float: right;
+    width: 20%;
+}
+
+.worker_name{
+    margin: 0 10px;
+    float: left;
+}
+
+.worker_number{
+    margin: 0 10px;
+    float: left;
+}
+
+.income_per_second{
+    margin: 0 10px;
+    float: right;
+}
+
+.hire > li{
+    display: none;
+}
+
+.loc_increase{
+    position: absolute;
+    font-size: 1.2em;
+    color: gold;
+    display: none;
+    pointer-events: none;
+    left: 500px;
+    top:500px;
+}
