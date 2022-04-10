@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cat Vs Dog</title>
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.1.1/css/all.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="styles/styles.css">
+</head>
+<body>
+    <!--
+    ### 作业要求 ###
+
+    开发一个小游戏，在其中使用CSS3的布局、装饰、动态等功能。
+
+    下面以石头剪刀布游戏为例：
+
+    程序功能：计算机显示三个图标（或图片），用户点击其中之一，与计算机随机产生的相比较，并反馈得分情况。
+
+    使用CSS3：
+
+    使用字体图标来表示石头剪刀布（alt:使用图片、使用SVG)
+    使用flex布局，让游戏整个居中 （alt:使用float, table, grid布局）
+    使用border, margin，width, height等方式，使用图标及得分布局合理
+    使用颜色、字体、文本相关的css，使图标及文字美观、大小合适
+    使用装饰：使用border-radius使三个图标呈圆形，border宽一点好看
+    使用过渡：使用:hover等方式，使图标在鼠标移上去之后， 图标能略微放大scale的效果，要求设置transition
+    使用动画：做一个动画，其作用是在图标上依次显示三个不同颜色的box-shadow。建立一个样式来使用这个功画， 时长可以是1s 或其他值。当用户点击后在点击事件的代码中启用这个动画，注意程序改变一个对象的样式不建议使用.style.xxx的方式，而是添加或移动某个命名的样式，如.classList.add("样式名")或remove("样式名")
+    使用遮罩层：当用户得分超过一定分数后，弹出对话框（其实是一position:fixed的div，让其dispaly由“none”变为“”），其后面显示一个遮罩层（其实是一个半透明的大的div)。
+    
+    ### 游戏介绍 ###
+    
+    《猫狗大战》
+    先选角度，再选力度，把鱼骨头扔到狗狗头上！
+    模仿某同名 flash 游戏，flash还活着的时候在4399打过，链接早就找不到了。
+    -->
+
+    <div class="window">
+        <div class="stage">
+            <div id="cat" class="animal">
+                <div class="hp-bar"></div>
+                <div class="animal-image"></div>
+            </div>
+            <div id="dog" class="animal">
+                <div class="hp-bar"></div>
+                <div class="animal-image"></div>
+            </div>
+            <div class="bullet hidden" id="fish-bullet">
+                <i class="fa-solid fa-fish"></i>
+            </div>
+            <div class="bullet hidden" id="bone-bullet">
+                <i class="fa-solid fa-bone"></i>
+            </div>
+        </div>
+        <div class="panel">
+            <div id="meter">
+                <div id="power-meter">
+                    <div id="power-stick"></div>
+                </div>
+                <div id="angle-meter">
+                    <div id="angle-stick"></div>
+                </div>
+            </div>
+            <button id="angle-button" class="my-button">
+                <i class="fa fa-crosshairs"></i>
+            </button>
+            <button id="power-button" class="my-button">
+                <i class="fa fa-bolt"></i>
+            </button>
+        </div>
+        <div class="pop-up hidden">
+            <p>Game Over</p>
+            <button id="restart-button" class="my-button">
+                <i class="fa fa-rotate-left"></i>
+            </button>
+        </div>
+        <div class="mask hidden"></div>
+    </div>
+    <script src="scripts/main.js" async></script>
+</body>
+</html>

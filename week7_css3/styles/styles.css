@@ -1,0 +1,211 @@
+.clearfix{
+    clear: both;
+}
+
+body{
+    font-family: Consolas, Arial, Helvetica, sans-serif;
+    background-color: antiquewhite;
+}
+
+.window{
+    width: 1000px;
+    height: 700px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.stage{
+    width: 1000px;
+    height: 550px;
+    background: url(../images/yard.jpg) no-repeat;
+    background-size: cover;
+    box-sizing: border-box;
+    border-width: 8px 8px 0 8px;
+    border-style: solid;
+    border-color: limegreen;
+    border-radius: 8px 8px 0 0;
+    position: relative;
+}
+
+.panel{
+    width: 1000px;
+    height: 150px;
+    box-sizing: border-box;
+    padding: 10px;
+    background: rgb(158, 199, 141);
+    border: 8px solid green;
+    border-radius: 0 0 8px 8px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.my-button{
+    font-size: 30px;
+    color: green;
+    width: 50px;
+    height: 50px;
+    display: block;
+    border-width: 0;
+    
+    box-sizing: border-box;
+    border-radius: 25px;
+    background-color: lime;
+    text-align: center;
+    line-height: 50px; /* Vertical align one-line text */
+    transition: transform 0.1s;
+}
+
+.my-button:hover{
+    transform: scale(1.2);
+}
+
+.my-button:disabled{
+    color: gray;
+    background-color: lightgray;
+}
+
+.my-button:active{
+    transform: scale(1.0);
+}
+
+#meter{
+    width: 150px;
+    height: 120px;
+    display: flex;
+    align-items: flex-end;
+}
+
+#power-meter{
+    width: 20px;
+    height: 120px;
+    box-sizing: border-box;
+    border: 4px solid green;
+
+    display: flex;
+    align-items: flex-end;
+}
+
+#power-stick{
+    width: 100%;
+    height: 100%;
+    background-color: red;
+}
+
+#angle-meter{
+    width: 120px;
+    height: 120px;
+    box-sizing: border-box;
+    border-color: green;
+    border-radius: 0 120px 0 0;
+    border-width: 4px;
+    border-style: solid;
+}
+
+#angle-stick{
+    width: 0;
+    height: 0;
+    border-width: 0px 8px 112px 8px;
+    border-style: solid;
+    border-color: limegreen transparent;
+    margin-left: -8px;
+    transform-origin: bottom;
+}
+
+.mask{
+    background: rgba(0, 0, 0, 0.5);
+
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    width: 984px;
+    height: 684px;
+    z-index: 2;
+}
+
+.pop-up{
+    display: flex;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -150px;
+    margin-left: -200px;
+
+    width: 400px;
+    height: 300px;
+
+    background-color: antiquewhite;
+    border: 8px solid limegreen;
+    box-sizing: border-box;
+    border-radius: 8px;
+
+    z-index: 3;
+
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 30px;
+    color: green;
+}
+
+.hp-bar{
+    width: 100%;
+    height: 12px;
+    background-color: red;
+}
+
+.animal{
+    width: 80px;
+    height: 150px;
+    position: absolute;
+}
+
+.animal .animal-image{
+    width: 80px;
+    height: 120px;
+    position: absolute;
+    bottom: 0;
+}
+
+#cat{
+    bottom: 0;
+    left: 100px;
+}
+
+#cat .animal-image{
+    background: url(../images/cat.png) no-repeat;
+    background-size: contain;
+}
+
+#dog{
+    bottom: 0;
+    left: 800px;
+}
+
+#dog .animal-image{
+    background: url(../images/dog.png) no-repeat;
+    background-size: contain;
+}
+
+.bullet{
+    position: absolute;
+    font-size: 30px;
+    color: orange;
+}
+
+@keyframes change-shadow{
+    0% {box-shadow: 0 0 5px 10px red;}
+    33% {box-shadow: 0 0 5px 10px green;}
+    66% {box-shadow: 0 0 5px 10px blue;}
+    100% {box-shadow: 0 0 5px 10px red;}
+}
+
+.change-shadow-animation{
+    animation: change-shadow 1s infinite;
+}
+
+.hidden{
+    display: none;
+}
