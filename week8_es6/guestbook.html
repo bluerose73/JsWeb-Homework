@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang='en'>
+ <head>
+  <meta charset='UTF-8'>
+  <title>Document</title>
+ </head>
+ <body>
+  姓名<input class='name'>
+  留言<input class='message'>
+  <button class='submit'>加入</button>
+  <ul class='messageList'></ul>
+
+  <script>
+(function(){
+	var msgs = [];
+	var $ = function(sel){ //选择器封装
+		return document.querySelector(sel);
+	}
+
+	//提交信息
+	$('.submit').addEventListener("click", function() {
+		var name = $('.name').value;
+		var msg = $('.message').value;
+		if (!name || !msg) return;
+		msgs.push([name, msg]); //加入map中
+		listShow();  //展示
+		var a = [$('.name'), $('.message')];
+		for (var i in a){
+			a[i].value = '';
+		} //清空文本框
+	});
+
+	//展示信息
+	var listShow = function () {
+		var items = [] ;
+		msgs.sort();
+		for(var i in msgs){
+			k = msgs[i][0];
+			v = msgs[i][1];
+			items.push( '<li class="list-group-item">'
+				+ k + '<span>说: </span>' + v 
+				+ '</li>');
+		}
+		$('.messageList').innerHTML = items.join('');
+	}
+})();
+
+  </script>
+ </body>
+</html>
